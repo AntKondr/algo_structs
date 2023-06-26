@@ -60,7 +60,7 @@ public class MyLinkedList<T>{
 
     // метод добавляет value в начало списка
     public void addBegin(T value){
-        Node<T> newNode = new Node(value);
+        Node<T> newNode = new Node<>(value);
         newNode.next = head;
         head = newNode;
         size++;
@@ -69,11 +69,11 @@ public class MyLinkedList<T>{
     // метод добавляет value в конец списка
     public void addEnd(T value){
         if (size == 0){
-            head = new Node(value);
+            head = new Node<>(value);
         }
         else{
             Node<T> last = findLastNode();
-            last.next = new Node(value);
+            last.next = new Node<>(value);
         }
         size++;
     }
@@ -165,7 +165,7 @@ public class MyLinkedList<T>{
 
     // метод создаёт реверснутый список и возвращает его
     public MyLinkedList<T> reversed(){
-        MyLinkedList<T> newList = new MyLinkedList();
+        MyLinkedList<T> newList = new MyLinkedList<>();
         Node<T> cursor = head;
         while (cursor != null){
             T value = cursor.value;

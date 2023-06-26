@@ -1,4 +1,9 @@
-public class Tree<T extends Comparable<T>>{
+import java.util.Queue;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.LinkedList;
+
+public class MyTree<T extends Comparable<T>>{
 
     private class Node<T>{
         T value;
@@ -16,13 +21,13 @@ public class Tree<T extends Comparable<T>>{
     private Node<T> root;
 
     // конструктор
-    public Tree(){
+    public MyTree(){
         root = null;
     }
 
     public boolean add(T value){
         if (root == null) {
-            root = new Node(value);
+            root = new Node<>(value);
             return true;
         }
         return addNode(root, value);
@@ -35,7 +40,7 @@ public class Tree<T extends Comparable<T>>{
         else if (value.compareTo(current.value) < 0){
             // Вставялем в левое поддерево
             if (current.left == null){
-                current.left = new Node(value);
+                current.left = new Node<>(value);
                 return true;
             }
             else{
@@ -45,7 +50,7 @@ public class Tree<T extends Comparable<T>>{
         else if (value.compareTo(current.value) > 0){
             // Вставляем в правое поддерево
             if (current.right == null){
-                current.right = new Node(value);
+                current.right = new Node<>(value);
                 return true;
             }
             else{
@@ -123,7 +128,7 @@ public class Tree<T extends Comparable<T>>{
 
     public T findFirst(){
         if (root == null){
-            throw new NoSuchElementException();
+            throw new IllegalStateException("tree is emty");
         }
         return findFirst(root).value;
     }
@@ -161,7 +166,7 @@ public class Tree<T extends Comparable<T>>{
         }
 
         List<T> result = new ArrayList<T>();
-        Queue<Node<T>> queue = new Queue<Node<T>>();
+        Queue<Node<T>> queue = new LinkedList<>();
         queue.add(root);
 
         while (!queue.isEmpty()){
